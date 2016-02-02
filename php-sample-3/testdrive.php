@@ -14,10 +14,11 @@ $mySQLi2 = new MySQLi('localhost','root','salam', 'aghilidedb');
 //var_dump($mySQLi2);
 if ($mySQLi === $mySQLi2 ) echo "they are simillar";
 
-//$person = new EvolvedPerson();
+$person = new EvolvedPerson(3);
 //$person->first = 'bamdad';
 //$person->last  = 'de';
-//
+$person->loadDataFromDB();
+
 //var_dump($person->fields);
 
 
