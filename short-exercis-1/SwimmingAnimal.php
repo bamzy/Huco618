@@ -6,7 +6,13 @@
  * Date: 2/4/2016
  * Time: 8:42 PM
  */
-class SwimmingAnimal
+include_once("Animal.php");
+class SwimmingAnimal extends Animal
 {
+    public function swim(){
+        echo "I am swimming \n";
+    }
 
 }
+
+?>

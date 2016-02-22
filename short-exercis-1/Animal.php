@@ -8,5 +8,11 @@
  */
 class Animal
 {
+    protected $name;
+    protected $type;
+    public function makeSound(){
+
+    }
 
 }
+?>
