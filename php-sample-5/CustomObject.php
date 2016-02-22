@@ -52,10 +52,12 @@ class CustomObject
         if ($this->id == self::DEFAULT_ID_NUMBER || $this->id == null){
             return null;
         }
-        $query = "SELECT * FROM {$this->tableName} WHERE id = {$this->id}";
+        $query = "SELECT ** FROM {$this->tableName} WHERE id = {$this->id}";
         $result = $this->mysqlConnection->query($query);
         if ($this->mysqlConnection->errono != 0){
-            echo __CLASS__ . ' has an erro in ' . __METHOD__ . ' at line ' . __LINE__;
+            $exception = new QueryException( __CLASS__ . ' has an erro in ' . __METHOD__ . ' at line ' . __LINE__);
+            $exception->query = $query;
+            throw $exception;
         }
 
         $row = $result->fetch_assoc();

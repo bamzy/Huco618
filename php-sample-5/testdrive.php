@@ -7,10 +7,18 @@ require_once('autoload.php');
  * Date: 2/1/2016
  * Time: 2:06 PM
  */
+try {
+    $sighting = new Sighting(5);
+    $sighting->loadDataFromDB();
+    $sighting->displayAsHTML();
 
-$sighting = new Sighting(5);
-$sighting->loadDataFromDB();
-$sighting->displayAsHTML();
+} catch (QueryException $e){
+    echo $e->getMessage();
+} catch (Exception $e){
+    echo $e->getMessage();
+    exit;
+
+}
 
 
 
