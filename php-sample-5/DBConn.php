@@ -12,7 +12,7 @@ class DBConn
     const USER = 'root';
 //    const PASSWORD = 'patting6solecisms&growths,';
     const PASSWORD = 'salam';
-    const DATABASE = 'aghilidedb';
+    const DATABASE = 'birdwatch';
     //access like this
     // self::PASSWORD
     private static $con;

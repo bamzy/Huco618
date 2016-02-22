@@ -10,14 +10,15 @@ class CustomObject
 {
 
     private $mysqlConnection ;
-
+    const DEFAULT_ID_NUMBER = -1;
     public $fields = array();
-    protected $tableName= 'person';
+    protected $tableName= 'NO TABLE SPECIFIED FOR CUSTOM OBJECT';
 
-    public function     __construct($id = -1){
+    public function     __construct($id = self::DEFAULT_ID_NUMBER){
 
         $this->mysqlConnection= DBConn::getConnection();
         $this->initializeFieldsFromDB();
+        if (empty($id)) $id= self::DEFAULT_ID_NUMBER;
         $this->id = $id;
 //        $this->tableName = $tableName;
     }
@@ -48,12 +49,15 @@ class CustomObject
     public function loadDataFromDB(){
 //        echo $this->id;
 //        echo "Loading From Database\n";
-        if ($this->id == -1 || $this->id == null){
+        if ($this->id == self::DEFAULT_ID_NUMBER || $this->id == null){
             return null;
         }
         $query = "SELECT * FROM {$this->tableName} WHERE id = {$this->id}";
         $result = $this->mysqlConnection->query($query);
-//        var_dump($result);
+        if ($this->mysqlConnection->errono != 0){
+            echo __CLASS__ . ' has an erro in ' . __METHOD__ . ' at line ' . __LINE__;
+        }
+
         $row = $result->fetch_assoc();
         foreach ($row as $drawer => $value){
             $this->fields[$drawer] = $value;

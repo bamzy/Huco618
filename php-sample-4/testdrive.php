@@ -7,6 +7,10 @@ require_once('autoload.php');
  * Date: 2/1/2016
  * Time: 2:06 PM
  */
+
+$sighting = new Sighting(5);
+$sighting->loadDataFromDB();
+var_dump($sighting);
 if (isset($_POST['submit'])) {
     $person = new EvolvedPerson($_POST['id']);
     $person->loadFromHtmlForm();
