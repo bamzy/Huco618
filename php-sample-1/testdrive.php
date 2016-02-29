@@ -24,6 +24,9 @@
     $myNavy->addToMyList(new Ship("ship3"));
     $myNavy->addToMyList(new Ship("ship"));
 
-    $myNavy->callALL();
-
+//    $myNavy->callALL();
+    foreach ($myNavy as $member){
+        echo $member->getName() . "\n";
+    }
+    echo count($myNavy).  "\n\n";
 ?>
