@@ -38,7 +38,9 @@ class Analyzer
         $this->data = strip_tags($this->data);
         $this->data = str_replace(array("\n","\r"), ' ', $this->data);
         $first = strpos($this->data, "[v]PREFACE");
+        $end = strpos($this->data,"End of Project Gutenberg's The Philosophy of Spinoza, by Baruch de Spinoza");
         $this->data = substr($this->data,$first);
+        $this->data = substr($this->data,0,-(strlen($this->data)-$end));
     }
     public function getSummary($stopwords){
         echo "Word Count: " . $this->getWordCount() . "\n";
