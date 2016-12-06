@@ -3,7 +3,7 @@
 
 //		This is a template that you can use to submit your PHP
 //		5-minute exercises. Work on your code in a different document
-//		and once you get it working, just paste the code into the blank spaces 
+//		and once you get it working, just paste the code into the blank spaces
 //		below each echo statement.
 //
 //		It's useful to me if you add an echo statement that tells me
@@ -13,7 +13,7 @@
 //
 
 
-/*
+
 
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 1 follows
@@ -149,7 +149,7 @@ echo 'You have '. $number_of_dozens . ' dozens and ' . $n . " donuts \n";
 
 
 
-*/
+
 
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 6 follows
@@ -179,12 +179,24 @@ echo 'The sum of digits in your number was: '. $sum . "\n";
 
 
 
-/*
+
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 7 follows
 /////////////////////////////////////////////////////////////////////////////////
-echo "\n\n-------------------  Exercise 7 ----------------------------\n\n";
+echo "\n\n-------------------  Exercise 7: CHARTING RANDOM NUMBERS  ----------------------------\n\n";
+$number_frequency = [0,0,0,0,0,0,0,0,0,0];
+for ($i = 0 ; $i< 100 ; $i++){
+    $number = rand(1, 10);
+    $number_list[$i] = $number;
+    $number_frequency[$number]++;
+}
+for ($i = 0 ; $i< 10 ; $i++){
+    echo $i . ' = ' . $number_frequency[$i] . ' | ';
+    for ($j=0;$j< $number_frequency[$i];$j++)
+        echo 'x';
+    echo "\n";
 
+}
 
 
 
@@ -194,21 +206,77 @@ echo "\n\n-------------------  Exercise 7 ----------------------------\n\n";
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 8 follows
 /////////////////////////////////////////////////////////////////////////////////
-echo "\n\n-------------------  Exercise 8 ----------------------------\n\n";
+echo "\n\n-------------------  Exercise 8: GUESS A RANDOM NUMBER  ----------------------------\n\n";
+$answer = rand(1,100);
+$answer = 55;
+$attempt = 0;
+while (true) {
+    echo "What is you guess? ";
+    $n = trim(fgets(STDIN), "\n");
+    $n = trim(preg_replace('/\s\s+/', ' ', $n));
+    if ($n === 'q') {
+        echo "Game Ended\n";
+        return;
+    }
+    if (!is_numeric($n)) {
+        echo "It was not a number\n";
+    } else{
 
-
-
-
+        if ($n > $answer)
+            echo "Too High \n";
+        if ($n < $answer)
+            echo "Too Low \n";
+        if ($n == $answer) {
+            echo "\nYour guess was right! it took you (" . $attempt . ") attempts\n";
+            return;
+        }
+        $attempt++;
+    }
+}
 
 
 
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 9 follows
 /////////////////////////////////////////////////////////////////////////////////
-echo "\n\n-------------------  Exercise 9 ----------------------------\n\n";
+echo "\n\n-------------------  Exercise 9: PRIME NUMBERS  ----------------------------\n\n";
 
+function isPrime($n){
+    if ($n<=1 ){
+        echo "The number should be bigger than 1\n";
+        return;
+    }
+    $counter = 0;
+    for ($i=1;$i<=$n;$i++){
+        if ($n % $i == 0)
+            $counter++;
+    }
+    return $counter;
+}
 
+echo "Enter a number bigger than one: ";
+$n = trim( fgets( STDIN ), "\n" );
+$n = trim(preg_replace('/\s\s+/', ' ', $n));
 
+if (isPrime($n)> 2) {
+    echo "The number was NOT a prime number\n";
+    $m = $n;
+    while (true){
+        $m--;
+        $n++;
+
+        if (isPrime($n)<= 2) {
+            echo "The nearest prime number is " . $n . "\n";
+            break;
+        }
+        else if (isPrime($m)<= 2) {
+            echo "The nearest prime number is " . $m . "\n";
+            break;
+        }
+    }
+}
+else
+    echo "The number was a prime number \n";
 
 
 
@@ -216,12 +284,41 @@ echo "\n\n-------------------  Exercise 9 ----------------------------\n\n";
 /////////////////////////////////////////////////////////////////////////////////
 //		Code for Exercise 10 follows
 /////////////////////////////////////////////////////////////////////////////////
-echo "\n\n-------------------  Exercise 10 ----------------------------\n\n";
+echo "\n\n-------------------  Exercise 10: MULTIPLICATION TABLE ----------------------------\n\n";
+
+echo "<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<table>";
+
+for ($i=1;$i<10;$i++){
+    echo '<tr>';
+    for ($j=1;$j<10;$j++){
+        echo '<td>' . $j * $i . '</td>';
+    }
+    echo '</tr>';
+}
+echo "</table></body></html>";
 
 
 
-
-
-
-*/
 ?>
